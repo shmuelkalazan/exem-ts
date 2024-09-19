@@ -29,11 +29,17 @@ const select_position :HTMLSelectElement  = document.querySelector('.select_posi
 const but_serch_player :HTMLButtonElement |null = document.querySelector('.but_serch_player')
 but_serch_player?.addEventListener('click',()=>GetAllPlayersByFilter())
 const table_players :HTMLTableElement = document.querySelector('.table_players')!
-const list_table :HTMLDivElement |null = document.querySelector('.list_table')
+const list_table :HTMLElement | null  = document.querySelector('.list_table')
 
 const BASE_URL :string = 'https://nbaserver-q21u.onrender.com'
 let allPlayers:Player[] = []; 
 
+
+const my_players_pg:HTMLDivElement = document.querySelector('.my_players_pg')!
+const my_players_sg:HTMLDivElement = document.querySelector('.my_players_sg')!
+const my_players_sf:HTMLDivElement = document.querySelector('.my_players_sf')!
+const my_players_pf:HTMLDivElement = document.querySelector('.my_players_pf')!
+const my_players_c:HTMLDivElement = document.querySelector('.my_players_c')!
 
 
 const GetAllPlayersByFilter = async  ():Promise<void> => {
@@ -54,6 +60,9 @@ const GetAllPlayersByFilter = async  ():Promise<void> => {
         allPlayers.push(data)
         allPlayers = allPlayers.flat()
         //console.log(allPlayers[0].playerName);
+        // list_table.innerHTML = ''
+        console.log(list_table);
+        
         DisplayAllPlayers(allPlayers)
     } catch (err) {
         alert(`Couldn't proccess your players`)
@@ -61,21 +70,22 @@ const GetAllPlayersByFilter = async  ():Promise<void> => {
 }
 
 const DisplayAllPlayers = (allPlayers:Player[]) => {
-    console.log("in");
-    //table_players.innerHTML = ""
+    console.log("innnnn");
+    list_table!.innerHTML = "";
     
     for(let player of allPlayers) {
+        let player_first_name :string = player.playerName.split(' ')[0]
         const tr :HTMLTableRowElement = document.createElement('tr')
-        const td_name :HTMLTableCellElement = document.createElement('td')
-        const td_position :HTMLTableCellElement = document.createElement('td')
-        const td_points :HTMLTableCellElement = document.createElement('td')
-        const td_fg :HTMLTableCellElement = document.createElement('td')
-        const td_3p :HTMLTableCellElement = document.createElement('td')
-        const td_action :HTMLTableCellElement = document.createElement('td') 
-        const add_button :HTMLButtonElement = document.createElement('button')
+        const td_name :HTMLElement = document.createElement('td')
+        const td_position :HTMLElement = document.createElement('td')
+        const td_points :HTMLElement = document.createElement('td')
+        const td_fg :HTMLElement = document.createElement('td')
+        const td_3p :HTMLElement = document.createElement('td')
+        const td_action :HTMLElement = document.createElement('td') 
+        const add_button :HTMLElement = document.createElement('button')
         add_button.classList.add('add_button')
-        add_button.textContent = `Add ${player.playerName} to current Team`
-        //add_button.addEventListener('click' ,() => AddPlayerToMyTeam(player))
+        add_button.textContent = `Add ${player_first_name} to current Team`
+        add_button.addEventListener('click' ,() => AddPlayerToMyTeam(player))
         td_name.textContent = player.playerName
         td_position.textContent = player.position
         td_points.textContent = player.points.toString()
@@ -89,11 +99,87 @@ const DisplayAllPlayers = (allPlayers:Player[]) => {
         tr.appendChild(td_3p)
         tr.appendChild(td_action)
         list_table?.appendChild(tr)
-        //table_players.appendChild()
-    }
-     
+        //table_players.appendChild(tr)
+    }  
+}
 
-   
+const AddPlayerToMyTeam = (player:Player) =>{
+    console.log(player);
+    
+    const position:HTMLParagraphElement = document.createElement('p')
+    const name:HTMLParagraphElement = document.createElement('p')! 
+    const threePercent:HTMLParagraphElement = document.createElement('p')
+    const twoPercent:HTMLParagraphElement = document.createElement('p') 
+    const points:HTMLParagraphElement = document.createElement('p') 
+    position.classList.add('in_one_player')
+    name.classList.add('in_one_player')
+    threePercent.classList.add('in_one_player')
+    twoPercent.classList.add('in_one_player')
+    points.classList.add('in_one_player')
+
+    name.textContent = player.playerName
+    threePercent.textContent = player.threePercent.toString()
+    twoPercent.textContent = player.twoPercent.toString()
+    points.textContent = player.points.toString()
+
+
+    switch (player.position) {
+        case 'PG':
+            position.textContent = 'Point Guard'
+            my_players_pg.innerHTML = ""      
+            my_players_pg.appendChild(position)
+            my_players_pg.appendChild(name)
+            my_players_pg.appendChild(threePercent)
+            my_players_pg.appendChild(twoPercent)
+            my_players_pg.appendChild(points)
+            break;
+        case 'SG':
+            position.textContent = 'Shooting Guard'
+            my_players_sg.innerHTML = ""      
+            my_players_sg.appendChild(position)
+            my_players_sg.appendChild(name)
+            my_players_sg.appendChild(threePercent)
+            my_players_sg.appendChild(twoPercent)
+            my_players_sg.appendChild(points)
+            break;
+        case 'SF':
+            position.textContent = 'Small Forward'
+            my_players_sf.innerHTML = ""      
+            my_players_sf.appendChild(position)
+            my_players_sf.appendChild(name)
+            my_players_sf.appendChild(threePercent)
+            my_players_sf.appendChild(twoPercent)
+            my_players_sf.appendChild(points)
+            break;
+        case 'PF':
+            position.textContent = 'Power Forward'
+            my_players_pf.innerHTML = ""      
+            my_players_pf.appendChild(position)
+            my_players_pf.appendChild(name)
+            my_players_pf.appendChild(threePercent)
+            my_players_pf.appendChild(twoPercent)
+            my_players_pf.appendChild(points)
+            break;
+        case 'C':
+            position.textContent = 'Center'
+            my_players_c.innerHTML = ""      
+            my_players_c.appendChild(position)
+            my_players_c.appendChild(name)
+            my_players_c.appendChild(threePercent)
+            my_players_c.appendChild(twoPercent)
+            my_players_c.appendChild(points)
+            break;   
+        default:
+            position.textContent = 'Point Guard'
+            my_players_pg.innerHTML = ""      
+            my_players_pg.appendChild(position)
+            my_players_pg.appendChild(name)
+            my_players_pg.appendChild(threePercent)
+            my_players_pg.appendChild(twoPercent)
+            my_players_pg.appendChild(points)
+            break 
+    }
+
 }
 
 

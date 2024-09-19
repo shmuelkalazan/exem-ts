@@ -39,6 +39,11 @@ const table_players = document.querySelector('.table_players');
 const list_table = document.querySelector('.list_table');
 const BASE_URL = 'https://nbaserver-q21u.onrender.com';
 let allPlayers = [];
+const my_players_pg = document.querySelector('.my_players_pg');
+const my_players_sg = document.querySelector('.my_players_sg');
+const my_players_sf = document.querySelector('.my_players_sf');
+const my_players_pf = document.querySelector('.my_players_pf');
+const my_players_c = document.querySelector('.my_players_c');
 const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch(`${BASE_URL}/api/filter`, {
@@ -57,6 +62,8 @@ const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* 
         allPlayers.push(data);
         allPlayers = allPlayers.flat();
         //console.log(allPlayers[0].playerName);
+        // list_table.innerHTML = ''
+        console.log(list_table);
         DisplayAllPlayers(allPlayers);
     }
     catch (err) {
@@ -64,9 +71,10 @@ const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 const DisplayAllPlayers = (allPlayers) => {
-    console.log("in");
-    //table_players.innerHTML = ""
+    console.log("innnnn");
+    list_table.innerHTML = "";
     for (let player of allPlayers) {
+        let player_first_name = player.playerName.split(' ')[0];
         const tr = document.createElement('tr');
         const td_name = document.createElement('td');
         const td_position = document.createElement('td');
@@ -76,8 +84,8 @@ const DisplayAllPlayers = (allPlayers) => {
         const td_action = document.createElement('td');
         const add_button = document.createElement('button');
         add_button.classList.add('add_button');
-        add_button.textContent = `Add ${player.playerName} to current Team`;
-        //add_button.addEventListener('click' ,() => AddPlayerToMyTeam(player))
+        add_button.textContent = `Add ${player_first_name} to current Team`;
+        add_button.addEventListener('click', () => AddPlayerToMyTeam(player));
         td_name.textContent = player.playerName;
         td_position.textContent = player.position;
         td_points.textContent = player.points.toString();
@@ -91,6 +99,79 @@ const DisplayAllPlayers = (allPlayers) => {
         tr.appendChild(td_3p);
         tr.appendChild(td_action);
         list_table === null || list_table === void 0 ? void 0 : list_table.appendChild(tr);
-        //table_players.appendChild()
+        //table_players.appendChild(tr)
+    }
+};
+const AddPlayerToMyTeam = (player) => {
+    console.log(player);
+    const position = document.createElement('p');
+    const name = document.createElement('p');
+    const threePercent = document.createElement('p');
+    const twoPercent = document.createElement('p');
+    const points = document.createElement('p');
+    position.classList.add('in_one_player');
+    name.classList.add('in_one_player');
+    threePercent.classList.add('in_one_player');
+    twoPercent.classList.add('in_one_player');
+    points.classList.add('in_one_player');
+    name.textContent = player.playerName;
+    threePercent.textContent = player.threePercent.toString();
+    twoPercent.textContent = player.twoPercent.toString();
+    points.textContent = player.points.toString();
+    switch (player.position) {
+        case 'PG':
+            position.textContent = 'Point Guard';
+            my_players_pg.innerHTML = "";
+            my_players_pg.appendChild(position);
+            my_players_pg.appendChild(name);
+            my_players_pg.appendChild(threePercent);
+            my_players_pg.appendChild(twoPercent);
+            my_players_pg.appendChild(points);
+            break;
+        case 'SG':
+            position.textContent = 'Shooting Guard';
+            my_players_sg.innerHTML = "";
+            my_players_sg.appendChild(position);
+            my_players_sg.appendChild(name);
+            my_players_sg.appendChild(threePercent);
+            my_players_sg.appendChild(twoPercent);
+            my_players_sg.appendChild(points);
+            break;
+        case 'SF':
+            position.textContent = 'Small Forward';
+            my_players_sf.innerHTML = "";
+            my_players_sf.appendChild(position);
+            my_players_sf.appendChild(name);
+            my_players_sf.appendChild(threePercent);
+            my_players_sf.appendChild(twoPercent);
+            my_players_sf.appendChild(points);
+            break;
+        case 'PF':
+            position.textContent = 'Power Forward';
+            my_players_pf.innerHTML = "";
+            my_players_pf.appendChild(position);
+            my_players_pf.appendChild(name);
+            my_players_pf.appendChild(threePercent);
+            my_players_pf.appendChild(twoPercent);
+            my_players_pf.appendChild(points);
+            break;
+        case 'C':
+            position.textContent = 'Center';
+            my_players_c.innerHTML = "";
+            my_players_c.appendChild(position);
+            my_players_c.appendChild(name);
+            my_players_c.appendChild(threePercent);
+            my_players_c.appendChild(twoPercent);
+            my_players_c.appendChild(points);
+            break;
+        default:
+            position.textContent = 'Point Guard';
+            my_players_pg.innerHTML = "";
+            my_players_pg.appendChild(position);
+            my_players_pg.appendChild(name);
+            my_players_pg.appendChild(threePercent);
+            my_players_pg.appendChild(twoPercent);
+            my_players_pg.appendChild(points);
+            break;
     }
 };

@@ -35,6 +35,7 @@ body{
 }
 
 .one_player{
+    border: black solid 1px;
     height: 100px;
     width: 100px;
     background-color: aliceblue;
@@ -43,8 +44,12 @@ body{
     padding: 3px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
+}
+.in_one_player{
+    margin: 0px;
+    font-size: 10px;
 }
 .search{
     display: flex;

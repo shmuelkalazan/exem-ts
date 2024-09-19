@@ -1,3 +1,4 @@
+//יצירת ולקיחת הערכים מדרישות החיפוש
 const range1: HTMLInputElement = document.querySelector(".range_1")!;
 const display_range_1: HTMLDivElement | null = document.querySelector(".display_range_1");
 const display_range_1_text: HTMLParagraphElement | null = document.createElement("p");
@@ -28,15 +29,14 @@ range3?.addEventListener("change", () => {
 display_range_3?.appendChild(display_range_3_text);
 
 
-const select_position: HTMLSelectElement =
-  document.querySelector(".select_position")!;
-const but_serch_player: HTMLButtonElement | null =
-  document.querySelector(".but_serch_player");
+const select_position: HTMLSelectElement = document.querySelector(".select_position")!;
+const but_serch_player: HTMLButtonElement | null = document.querySelector(".but_serch_player");
 but_serch_player?.addEventListener("click", () => GetAllPlayersByFilter());
 const table_players: HTMLTableElement =
   document.querySelector(".table_players")!;
 const list_table: HTMLTableElement = document.querySelector(".list_table")!;
 
+//תפישת השחקנים של הקבוצה שלי
 const my_players_pg: HTMLDivElement = document.querySelector(".my_players_pg")!;
 const my_players_sg: HTMLDivElement = document.querySelector(".my_players_sg")!;
 const my_players_sf: HTMLDivElement = document.querySelector(".my_players_sf")!;
@@ -44,9 +44,10 @@ const my_players_pf: HTMLDivElement = document.querySelector(".my_players_pf")!;
 const my_players_c: HTMLDivElement = document.querySelector(".my_players_c")!;
 
 const BASE_URL: string = "https://nbaserver-q21u.onrender.com";
+//שמירת כל השחקנים שהתקבלו בתוצאת החיפוש
 let allPlayers: Player[] | any[] = [];
 
-
+//מביא את כל השחקנים שתואמים לתוצאות החיפוש
 const GetAllPlayersByFilter = async (): Promise<void> => {
   try {
     const res: Response = await fetch(`${BASE_URL}/api/filter`, {
@@ -69,7 +70,7 @@ const GetAllPlayersByFilter = async (): Promise<void> => {
     alert(`Couldn't proccess your players`);
   }
 };
-
+//מציג את כל השחקנים שהתקבלו בתוצאות החיפוש
 const DisplayAllPlayers = (allPlayers: Player[]) => {
    list_table.innerHTML = "";
   for (let player of allPlayers) {
@@ -100,8 +101,9 @@ const DisplayAllPlayers = (allPlayers: Player[]) => {
     list_table?.appendChild(tr);
   }
 };
-
+// מוסיף שחקן חדש לקבוצה 
 const AddPlayerToMyTeam = (player: Player) => {
+  //יצירת כל האלמנטים של השחקן
   const position: HTMLParagraphElement = document.createElement("p");
   const name: HTMLParagraphElement = document.createElement("p")!;
   const threePercent: HTMLParagraphElement = document.createElement("p");
@@ -113,12 +115,12 @@ const AddPlayerToMyTeam = (player: Player) => {
   threePercent.classList.add("in_one_player");
   twoPercent.classList.add("in_one_player");
   points.classList.add("in_one_player");
-
+  //השמת הערכים בשחקן החדש 
   name.textContent = player.playerName;
   threePercent.textContent = `three Percent: ${player.threePercent.toString()}%`;
   twoPercent.textContent = `two Percent: ${player.twoPercent.toString()}%`;
   points.textContent = `points: ${player.points.toString()}`;
-
+  //השמת פוזישן לפי הפוזישן שהתקבל
   let check_position: HTMLDivElement = my_players_pg;
   switch (player.position) {
     case "PG":
@@ -158,7 +160,7 @@ const AddPlayerToMyTeam = (player: Player) => {
   check_position.appendChild(twoPercent);
   check_position.appendChild(points);
 };
-
+//מבנה השחקן
 interface Player {
   position: string;
   twoPercent: number;

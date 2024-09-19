@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//יצירת ולקיחת הערכים מדרישות החיפוש
 const range1 = document.querySelector(".range_1");
 const display_range_1 = document.querySelector(".display_range_1");
 const display_range_1_text = document.createElement("p");
@@ -37,13 +38,16 @@ const but_serch_player = document.querySelector(".but_serch_player");
 but_serch_player === null || but_serch_player === void 0 ? void 0 : but_serch_player.addEventListener("click", () => GetAllPlayersByFilter());
 const table_players = document.querySelector(".table_players");
 const list_table = document.querySelector(".list_table");
+//תפישת השחקנים של הקבוצה שלי
 const my_players_pg = document.querySelector(".my_players_pg");
 const my_players_sg = document.querySelector(".my_players_sg");
 const my_players_sf = document.querySelector(".my_players_sf");
 const my_players_pf = document.querySelector(".my_players_pf");
 const my_players_c = document.querySelector(".my_players_c");
 const BASE_URL = "https://nbaserver-q21u.onrender.com";
+//שמירת כל השחקנים שהתקבלו בתוצאת החיפוש
 let allPlayers = [];
+//מביא את כל השחקנים שתואמים לתוצאות החיפוש
 const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch(`${BASE_URL}/api/filter`, {
@@ -67,6 +71,7 @@ const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* 
         alert(`Couldn't proccess your players`);
     }
 });
+//מציג את כל השחקנים שהתקבלו בתוצאות החיפוש
 const DisplayAllPlayers = (allPlayers) => {
     list_table.innerHTML = "";
     for (let player of allPlayers) {
@@ -97,7 +102,9 @@ const DisplayAllPlayers = (allPlayers) => {
         list_table === null || list_table === void 0 ? void 0 : list_table.appendChild(tr);
     }
 };
+// מוסיף שחקן חדש לקבוצה 
 const AddPlayerToMyTeam = (player) => {
+    //יצירת כל האלמנטים של השחקן
     const position = document.createElement("p");
     const name = document.createElement("p");
     const threePercent = document.createElement("p");
@@ -109,10 +116,12 @@ const AddPlayerToMyTeam = (player) => {
     threePercent.classList.add("in_one_player");
     twoPercent.classList.add("in_one_player");
     points.classList.add("in_one_player");
+    //השמת הערכים בשחקן החדש 
     name.textContent = player.playerName;
     threePercent.textContent = `three Percent: ${player.threePercent.toString()}%`;
     twoPercent.textContent = `two Percent: ${player.twoPercent.toString()}%`;
     points.textContent = `points: ${player.points.toString()}`;
+    //השמת פוזישן לפי הפוזישן שהתקבל
     let check_position = my_players_pg;
     switch (player.position) {
         case "PG":

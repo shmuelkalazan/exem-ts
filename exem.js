@@ -37,13 +37,13 @@ const but_serch_player = document.querySelector(".but_serch_player");
 but_serch_player === null || but_serch_player === void 0 ? void 0 : but_serch_player.addEventListener("click", () => GetAllPlayersByFilter());
 const table_players = document.querySelector(".table_players");
 const list_table = document.querySelector(".list_table");
-const BASE_URL = "https://nbaserver-q21u.onrender.com";
-let allPlayers = [];
 const my_players_pg = document.querySelector(".my_players_pg");
 const my_players_sg = document.querySelector(".my_players_sg");
 const my_players_sf = document.querySelector(".my_players_sf");
 const my_players_pf = document.querySelector(".my_players_pf");
 const my_players_c = document.querySelector(".my_players_c");
+const BASE_URL = "https://nbaserver-q21u.onrender.com";
+let allPlayers = [];
 const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch(`${BASE_URL}/api/filter`, {
@@ -59,7 +59,7 @@ const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* 
             }),
         });
         const data = yield res.json();
-        allPlayers.push(data);
+        allPlayers = [data];
         allPlayers = allPlayers.flat();
         DisplayAllPlayers(allPlayers);
     }
@@ -67,7 +67,6 @@ const GetAllPlayersByFilter = () => __awaiter(void 0, void 0, void 0, function* 
         alert(`Couldn't proccess your players`);
     }
 });
-list_table.innerHTML = "";
 const DisplayAllPlayers = (allPlayers) => {
     list_table.innerHTML = "";
     for (let player of allPlayers) {

@@ -3,6 +3,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: aliceblue;
 }
 .hedear{
     color: white;
@@ -26,13 +27,12 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(91, 100, 193);
-
+    
 }
 .my_players{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rgb(205, 205, 204); */
     height: 150px;
     width: 700px;
 }
@@ -41,7 +41,7 @@ body{
     border: black solid 1px;
     height: 100px;
     width: 100px;
-    background-color: aliceblue;
+    background-color: rgb(230, 234, 237);
     margin: 10px;
     border-radius: 10px;
     padding: 3px;
@@ -76,6 +76,8 @@ body{
 }
 .select_position{
     width: 450px;
+    height: 30px;
+    border-radius: 5px;
 }
 .div_range{
     display: flex;
@@ -109,9 +111,13 @@ th{
 }
 
 td, th {
-border: 1px solid #dddddd;
-text-align: left;
-padding: 8px;
+    border: 1px solid #2b2a2a;
+    text-align: left;
+    padding: 8px;
+}
+td{
+    background-color: rgb(247, 245, 244);
+
 }
 
 .add_button{

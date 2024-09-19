@@ -1,35 +1,32 @@
 const range1: HTMLInputElement = document.querySelector(".range_1")!;
-const display_range_1: HTMLDivElement | null =
-  document.querySelector(".display_range_1");
-const display_range_1_text: HTMLParagraphElement | null =
-  document.createElement("p");
+const display_range_1: HTMLDivElement | null = document.querySelector(".display_range_1");
+const display_range_1_text: HTMLParagraphElement | null = document.createElement("p");
 display_range_1_text.textContent = range1?.value!;
 range1?.addEventListener("change", () => {
   display_range_1_text.textContent = range1?.value!;
 });
 display_range_1?.appendChild(display_range_1_text);
 
+
 const range2: HTMLInputElement = document.querySelector(".range_2")!;
-const display_range_2: HTMLDivElement | null =
-  document.querySelector(".display_range_2");
-const display_range_2_text: HTMLParagraphElement | null =
-  document.createElement("p");
+const display_range_2: HTMLDivElement | null = document.querySelector(".display_range_2");
+const display_range_2_text: HTMLParagraphElement | null = document.createElement("p");
 display_range_2_text.textContent = range2?.value!;
 range2?.addEventListener("change", () => {
   display_range_2_text.textContent = range2?.value!;
 });
 display_range_2?.appendChild(display_range_2_text);
 
+
 const range3: HTMLInputElement = document.querySelector(".range_3")!;
-const display_range_3: HTMLDivElement | null =
-  document.querySelector(".display_range_3");
-const display_range_3_text: HTMLParagraphElement | null =
-  document.createElement("p");
+const display_range_3: HTMLDivElement | null = document.querySelector(".display_range_3");
+const display_range_3_text: HTMLParagraphElement | null = document.createElement("p");
 display_range_3_text.textContent = range3?.value!;
 range3?.addEventListener("change", () => {
   display_range_3_text.textContent = range3?.value!;
 });
 display_range_3?.appendChild(display_range_3_text);
+
 
 const select_position: HTMLSelectElement =
   document.querySelector(".select_position")!;
@@ -40,15 +37,15 @@ const table_players: HTMLTableElement =
   document.querySelector(".table_players")!;
 const list_table: HTMLTableElement = document.querySelector(".list_table")!;
 
-
-const BASE_URL: string = "https://nbaserver-q21u.onrender.com";
-let allPlayers: Player[] = [];
-
 const my_players_pg: HTMLDivElement = document.querySelector(".my_players_pg")!;
 const my_players_sg: HTMLDivElement = document.querySelector(".my_players_sg")!;
 const my_players_sf: HTMLDivElement = document.querySelector(".my_players_sf")!;
 const my_players_pf: HTMLDivElement = document.querySelector(".my_players_pf")!;
 const my_players_c: HTMLDivElement = document.querySelector(".my_players_c")!;
+
+const BASE_URL: string = "https://nbaserver-q21u.onrender.com";
+let allPlayers: Player[] | any[] = [];
+
 
 const GetAllPlayersByFilter = async (): Promise<void> => {
   try {
@@ -65,19 +62,16 @@ const GetAllPlayersByFilter = async (): Promise<void> => {
       }),
     });
     const data: Player = await res.json();
-    allPlayers.push(data);
-    allPlayers = allPlayers.flat();
+    allPlayers = [data]
+    allPlayers = allPlayers.flat()
     DisplayAllPlayers(allPlayers);
   } catch (err) {
     alert(`Couldn't proccess your players`);
   }
 };
 
-list_table.innerHTML = "";
-
 const DisplayAllPlayers = (allPlayers: Player[]) => {
    list_table.innerHTML = "";
-
   for (let player of allPlayers) {
     let player_first_name: string = player.playerName.split(" ")[0];
     const tr: HTMLTableRowElement = document.createElement("tr");

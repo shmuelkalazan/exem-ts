@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>players</title>
+    <link rel="stylesheet" href="./exem.css">
+    <script src="./exem.js" defer></script>
+</head>
+<body>
+    <div class="hedear">
+        <h1>NBA 2025</h1>
+    </div>
+    <div class="my_team">
+        <h2 class="hedear_my_player">my player</h2>
+        <div class="my_players">
+            <div class="my_players_pg one_player">
+                <h5>Point Guard</h5>
+            </div>
+            <div class="my_players_sg one_player">
+                <h5>Shooting Guard</h5>
+            </div>
+            <div class="my_players_sf one_player">
+                <h5>Small Forward</h5>
+            </div>
+            <div class="my_players_pf one_player">
+                <h5>Power Forward</h5>
+            </div>
+            <div class="my_players_c one_player">
+                <h5>Center</h5>
+            </div>
+        </div>
+    </div>
+    <div class="search">
+        <h2 class="hedear_serch">NBA Player Serch</h2>
+        <select class="select_position" name="position" id="">
+            <option value="PG">PG</option>
+            <option value="SG">SG</option>
+            <option value="SF">SF</option>
+            <option value="PF">PF</option>
+            <option value="C">C</option>
+        </select>
+        <div class="display_range_1 div_range">
+            <input class="range_1 range" min="0" max="20000" type="range">
+        </div>
+        <div class="display_range_2 div_range">
+            <input class="range_2 range" min="0" max="100" type="range">
+        </div>
+        <div class="display_range_3 div_range">
+            <input class="range_3 range" min="0" max="100" type="range">
+        </div>
+        <button class="but_serch_player">Serch Player</button>
+    </div>
+    <div class="all_players">
+        <table class="table_players">
+            <tr>
+              <th>Player</th>
+              <th>position</th>
+              <th>Points</th>
+              <th>FG %</th>
+              <th>3P %</th>
+              <th>Action</th>
+            </tr>
+            <div class="list_table"></div>
+          </table>
+    </div>
+    
+</body>
+</html>

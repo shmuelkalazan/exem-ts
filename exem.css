@@ -1,0 +1,101 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.hedear{
+    color: white;
+    height: 30px;
+    width: 100%;
+    background-color: rgb(91, 100, 193);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.my_team{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.hedear_my_player{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(91, 100, 193);
+}
+.my_players{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: bisque;
+    height: 150px;
+    width: 700px;
+}
+
+.one_player{
+    height: 100px;
+    width: 100px;
+    background-color: aliceblue;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 270px;
+    width: 500px;
+    background-color: rgb(245, 200, 200);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(91, 100, 193);
+}
+.hedear_serch{
+    margin: 3px;
+}
+.select_position{
+    width: 450px;
+}
+.div_range{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 2px;
+}
+.range{
+    width: 400px;
+    /* margin: 5px; */
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 700px;
+}
+th{
+    background-color: rgb(245, 48, 48);
+}
+
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+.add_button{
+    background-color: rgb(91, 100, 193);
+    height: 50px;
+    width:100px;
+    padding: 3px;
+    border-radius: 5px;
+}
+/* tr:nth-child(even) {
+background-color: #dddddd;
+} */
